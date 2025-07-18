@@ -4,6 +4,7 @@ import { supabase } from '../supabase-client';
 import { useAuth } from '../context/AuthContext';
 import { ThumbsDown, ThumbsUp } from 'lucide-react';
 import Loading from './Loading';
+import { toast } from 'react-toastify';
 
 type Props = {
   postId: number;
@@ -67,7 +68,10 @@ const LikeButton = ({postId}: Props) => {
   });
   const { mutate } = useMutation({
     mutationFn: (voteValue: number) => {
-      if (!user) throw new Error("User not authenticated");
+        if (!user) {
+          toast.error("Lütfen önce giriş yapınız 🔒", {theme: "colored"});
+        return;
+    }
       return vote(voteValue, postId, user?.id);
     },
     onSuccess: () => {

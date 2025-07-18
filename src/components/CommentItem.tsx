@@ -4,6 +4,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
 import { supabase } from "../supabase-client";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { toast } from 'react-toastify';
 
 type Props = {
     comment: Comment & {children?: Comment[]};
@@ -56,6 +57,12 @@ const CommentItem = ({ comment, postId }: Props) => {
 
     const handleReplySubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+  toast.error("Lütfen önce giriş yapınız 🔒", {
+    theme: "colored",
+  });
+  return;
+}
     if (!replyText) return;
     mutate(replyText);
 }

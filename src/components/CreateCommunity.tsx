@@ -2,6 +2,8 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useState } from "react";
 import { supabase } from "../supabase-client";
 import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext";
+import { toast } from 'react-toastify';
 
 type CommunityInput = {
   name: string;
@@ -17,6 +19,7 @@ const CreateCommunity = () => {
   const [description, setDescription] = useState<string>("");
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+    const { user } = useAuth();
   
   const { mutate, isPending, isError } = useMutation({
     mutationFn: createCommunity,
@@ -28,6 +31,12 @@ const CreateCommunity = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      toast.error("Lütfen önce giriş yapınız 🔒", {
+        theme: "colored",
+      });
+      return;
+    }
     mutate({ name, description });
     setName("");
     setDescription("");

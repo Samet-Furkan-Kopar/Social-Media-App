@@ -4,6 +4,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "../supabase-client";
 import CommentItem from "./CommentItem";
 import Loading from "./Loading";
+import { toast } from 'react-toastify';
 
 type Props = {
   postId: number;
@@ -84,6 +85,12 @@ const CommentSection = ({postId}:Props) => {
 
 const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+  toast.error("Lütfen önce giriş yapınız 🔒", {
+    theme: "colored",
+  });
+  return;
+}
     if (!newCommentText.trim()) return;
     mutate({content:newCommentText, parent_comment_id: null});
     setNewCommentText("");

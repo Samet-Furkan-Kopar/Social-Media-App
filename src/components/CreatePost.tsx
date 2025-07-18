@@ -3,6 +3,7 @@ import { useState } from "react"
 import { supabase } from "../supabase-client";
 import { useAuth } from "../context/AuthContext";
 import { fetchCommunities, type Community } from "./CommunityList";
+import { toast } from 'react-toastify';
 
 type PostInput = {
     title: string;
@@ -63,6 +64,12 @@ const { mutate, isPending, isError } = useMutation({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+if (!user) {
+  toast.error("Lütfen önce giriş yapınız 🔒", {
+    theme: "colored",
+  });
+  return;
+}
     if (!selectedFile) return;
     mutate({
       post: {
