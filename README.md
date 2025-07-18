@@ -1,69 +1,34 @@
-# React + TypeScript + Vite
+# React Community Posts App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a social community application developed using React, TypeScript, TanStack React Query, Tailwind CSS, Lucide React icons, Context API, and Supabase.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **GitHub Login:** Users can easily log in using their GitHub accounts.
+- **Create Communities:** Users can create their own communities.
+- **Community-specific Posts:** Posts can be created specifically for each community.
+- **Post Interactions:** Users can like posts.
+- **Comments and Replies:** Users can comment on posts and reply to comments.
+- **Real-time Data Management:** Data synchronization and caching is handled by TanStack React Query.
+- **Authentication and Data Management:** Supabase is used as the backend service.
+- **Modern Design:** Responsive and fast UI built with Tailwind CSS.
+- **Icon Support:** Visual enhancements with Lucide React icons.
+- **State Management:** Application-wide state handled via Context API.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- React + TypeScript
+- TanStack React Query
+- Tailwind CSS
+- Lucide React
+- Context API
+- Supabase (Authentication, Database, Storage)
+- GitHub OAuth (via Supabase)
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Setup
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+1. Clone the repository:
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   ```bash
+   git clone https://github.com/yourusername/your-repo-name.git
+   cd your-repo-name
